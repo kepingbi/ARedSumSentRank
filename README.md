@@ -23,7 +23,7 @@ The preprocessing steps for CNN/DailyMail follows [BertSum](https://github.com/n
   ```
 Replace `/path/to/` with the path where the package is actually saved.
     
-3. Download the `urls` directory from [BertSum](https://github.com/nlpyang/BertSum) and replace `urls` in directory `ARedSumSentRank` with the downloaded directory. These files are important for dividing data.
+3. Download the `urls` directory from [BertSum](https://github.com/nlpyang/BertSum) and put it in directory `ARedSumSentRank`. These files are important for dividing data.
 ### New York Times
 1. Get New York Times [T19_data](https://catalog.ldc.upenn.edu/LDC2008T19)
 
