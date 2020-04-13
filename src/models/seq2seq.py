@@ -43,7 +43,7 @@ class TransformerDecoderSeq(nn.Module):
 
         if self.use_doc:
             h_0 = self.bilinear(doc_emb.expand_as(encoder_outputs).contiguous(), encoder_outputs.contiguous())
-            h_0 = torch.sigmoid(h_0)
+            h_0 = torch.tanh(h_0)
             #doc_context = torch.cat((doc_emb.expand_as(encoder_outputs), encoder_outputs), dim=2)
             #(batch_size, sent_count, 2*emb_dim)
             #h_0 = self.linear_doc2(torch.sigmoid(self.linear_doc1(doc_context)))
@@ -72,7 +72,7 @@ class TransformerDecoderSeq(nn.Module):
         #h_1 = self.bilinear(dec_output.expand_as(raw_sent_embs).contiguous(), raw_sent_embs.contiguous())
         #batch_size, max_sent_count, 1
         sent_context = torch.cat((dec_output.expand_as(raw_sent_embs), raw_sent_embs), dim=2)
-        h_1 = self.linear_sent2(torch.sigmoid(self.linear_sent1(sent_context)))
+        h_1 = self.linear_sent2(torch.tanh(self.linear_sent1(sent_context)))
         #(batch_size, group_count, 1)
         sent_group_scores = h_1.squeeze(-1)
         if self.use_doc:
@@ -115,7 +115,7 @@ class TransformerDecoderSeq(nn.Module):
 
         if self.use_doc:
             h_0 = self.bilinear(doc_emb.expand_as(encoder_outputs).contiguous(), encoder_outputs.contiguous())
-            h_0 = torch.sigmoid(h_0)
+            h_0 = torch.tanh(h_0)
             #doc_context = torch.cat((doc_emb.expand_as(encoder_outputs), encoder_outputs), dim=2)
             #(batch_size, sent_count, 2*emb_dim)
             #h_0 = self.linear_doc2(torch.sigmoid(self.linear_doc1(doc_context)))
@@ -128,7 +128,7 @@ class TransformerDecoderSeq(nn.Module):
         #h_1 = self.bilinear(dec_output.expand_as(raw_sent_embs).contiguous(), raw_sent_embs.contiguous())
         sent_context = torch.cat((dec_output, raw_sent_embs.unsqueeze(1).expand_as(dec_output)), dim=-1)
         # batch_size, tgt_seq_len, sent_count, 2*emb_dim
-        h_1 = self.linear_sent2(torch.sigmoid(self.linear_sent1(sent_context)))
+        h_1 = self.linear_sent2(torch.tanh(self.linear_sent1(sent_context)))
         #(batch_size, tgt_seq_len, sent_count, 1)
         seq_sent_scores = h_1.squeeze(-1)
         if self.use_doc:
