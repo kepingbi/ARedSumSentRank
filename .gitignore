@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+#
+*temp*
+urls
+results
+*logs
+*tmp*
+*bak*
+*err
+*out
+*pyc
+__pycache__
+
+src/__pycache__
