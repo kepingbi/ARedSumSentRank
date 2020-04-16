@@ -1,6 +1,7 @@
 # ARedSumSentRank
-Code for Paper `"Adaptive Redundancy-Aware Iterative Sentence Ranking for Extractive Document Summarization"`
-This code (ARedSumSentRank) has two versions of adaptive redundancy-aware sentence ranking models: **ARedSumCTX and ARedSumSEQ**
+Code for Paper ["Adaptive Redundancy-Aware Iterative Sentence Ranking for Extractive Document Summarization"](https://arxiv.org/abs/2004.06176).
+This code (ARedSumSentRank) has two versions of adaptive redundancy-aware sentence ranking models: 
+**ARedSumCTX and ARedSumSEQ**
 
 This code is based on [BertSum](https://github.com/nlpyang/BertSum), pytorch 1.1.0, and python 3.6.9.
 In order to run this code, you need the following packages.
@@ -102,7 +103,7 @@ To run different settings of training and evaluating models, go to src/ run:
   ```
   python run_para.py
   ```
-The hypter-parameters have been set in the script. You need to set the `DATA_ROOT_DIR`, `DATA_PATH`, `MODEL_DIR` and `RESULT_DIR` to a valid place. The hyper-parameters and the settings in `run_para.py` are the settings corresponding to the paper. The models are fine-tuned for `train_steps` and `max_epoch` whichever is reached first. Overall, 50000 steps are used as the stop condition in our models.
+The hypter-parameters have been set in the script. You need to set the `DATA_ROOT_DIR`, `DATA_PATH`, `MODEL_DIR` and `RESULT_DIR` to a valid place. The hyper-parameters and the settings in `run_para.py` are the settings corresponding to the paper. The results from re-running models may be a little different from what are reported in the paper. Models and predicted summaries correponding to the reported numbers in the paper can be provided upon request. The models are fine-tuned for `train_steps` and `max_epoch` whichever is reached first. Overall, 50000 steps are used as the stop condition in our models.
 
 By default, during training, after each `-save_checkpoint_steps` the model will be validated on the validation set and at last only models with the top 3 performances (in terms of either loss or ROUGE scores indicated by `-valid_by_rouge`) will be saved and tested with the test data. Precision and ROUGE scores will be reported by default. Whether to calculate precision and ROUGE can be controlled with `-report_precision` and `-report_rouge` respectively.
 
